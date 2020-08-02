@@ -3,6 +3,7 @@ FROM ubuntu
 RUN apt update && \
     apt install python3 -y && \
     apt install python3-pip -y
+    
 VOLUME [ "/app/src" ]
 
 WORKDIR /app/src/
