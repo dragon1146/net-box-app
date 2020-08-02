@@ -1,0 +1,42 @@
+version: "3.4"
+services:
+#   nginx:
+#     container_name: containerize_nginx_1
+#     build: /home/glitch/Desktop/work01/nginx/
+#     ports: 
+#         - "80:80"
+#     volumes: 
+#         - /home/glitch/Desktop/work01/nginx/files/nginx:/etc/nginx
+#         - /home/glitch/Desktop/work01/nginx/files:/etc/ssl/certs/
+#     networks: 
+#         common_net:
+#             ipv4_address: 172.26.0.2
+
+    net-box-app:
+        container_name: net-box-app
+        build: /home/glitch/Documents/pythonRelated/IT-Toolkit/networking-toolkit/net-box-app-everything/net-box-app
+        command: flask run
+        volumes:
+            - type: volume
+              source: net-box-app-vol
+              target: /app/src 
+        networks: 
+            common_net:
+                ipv4_address: 172.25.0.11
+        ports: 
+            - "80:11"
+          
+# networks:
+#     common_net:
+#         ipam:
+#             driver: default
+#             config:
+#                 - subnet: 172.25.0.0/16
+volumes: 
+    net-box-app-vol:
+        name: net-box-app-vol
+
+networks:
+    default:
+        external:
+        name: common_net
