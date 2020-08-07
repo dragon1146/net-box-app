@@ -1,0 +1,87 @@
+version: "3.7"
+services:
+#   nginx:
+#     container_name: containerize_nginx_1
+#     build: /home/glitch/Desktop/work01/nginx/
+#     ports: 
+#         - "80:80"
+#     volumes: 
+#         - /home/glitch/Desktop/work01/nginx/files/nginx:/etc/nginx
+#         - /home/glitch/Desktop/work01/nginx/files:/etc/ssl/certs/
+#     networks: 
+#         common_net:
+#             ipv4_address: 172.26.0.2
+
+    network-test-app01:
+        image: ubuntu
+        container_name: network-test-app01
+        # build: /home/glitch/Documents/pythonRelated/IT-Toolkit/networking-toolkit/net-box-app-everything/net-box-app
+        # command: flask run
+        command: tail -f /dev/null
+        # volumes:
+        #     - type: volume
+        #       source: named-vol-test-vol
+        #       target: /name-vol-test
+
+        networks: 
+            frontend:
+                ipv4_address: 192.168.11.101
+            # - frontend
+            # frontend:
+                # ipv4_address: 172.25.0.11
+        # ports: 
+        #     - "80:11"
+    
+    network-test-app02:
+        image: ubuntu
+        container_name: network-test-app02
+        # build: /home/glitch/Documents/pythonRelated/IT-Toolkit/networking-toolkit/net-box-app-everything/net-box-app
+        # command: flask run
+        command: tail -f /dev/null
+        # volumes:
+        #     - type: volume
+        #       source: named-vol-test-vol
+        #       target: /name-vol-test
+
+        
+        networks: 
+            frontend:
+                ipv4_address: 192.168.11.102
+            # - bridge
+            # - frontend
+        #         ipv4_address: 172.25.0.11
+        # ports: 
+        #     - "80:11"
+          
+# networks:
+#     frontend:
+#         ipam:
+#             driver: default
+#             config:
+#                 - subnet: 192.168.12.0/24
+
+networks:
+    frontend:
+        external: true
+        name: frontend
+    #     frontend:
+    #         ipam:
+    #             driver: default
+    #             config:
+    #                 - subnet: 192.168.12.0/24
+# volumes: 
+#     named-vol-test-vol:
+#         name: named-vol-test-vol
+
+# networks:
+#     bridge:
+#         # external:
+#         #     name: frontend
+#         driver: bridge
+
+
+# networks:
+#     frontend:
+#         external: true
+#         name: frontend
+        

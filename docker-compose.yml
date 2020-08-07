@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.7"
 services:
 #   nginx:
 #     container_name: containerize_nginx_1
@@ -21,8 +21,8 @@ services:
               source: net-box-app-vol
               target: /app/src 
         networks: 
-            common_net:
-                ipv4_address: 172.25.0.11
+            frontend:
+                ipv4_address: 192.168.11.101
         ports: 
             - "80:11"
           
@@ -37,6 +37,6 @@ volumes:
         name: net-box-app-vol
 
 networks:
-    default:
-        external:
-        name: common_net
+    frontend:
+        external: true
+        name: frontend
